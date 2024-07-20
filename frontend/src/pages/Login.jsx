@@ -7,7 +7,7 @@
 // export default Login
 import React from "react";
 import { Link } from "react-router-dom";
-import Form from "../components/form"; // Assuming Form component is correctly imported
+import Form from "../components/form"; 
 
 function Login() {
   return (

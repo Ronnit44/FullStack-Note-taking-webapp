@@ -2,6 +2,8 @@ import { useState,useEffect } from "react"
 import api from "../api"
 import Note from "../components/Note"
 import "../styles/Home.css"
+import { Link } from "react-router-dom";
+
 
 function Home(){
 
@@ -52,11 +54,18 @@ function Home(){
     return (
         <div>
             <div>
+            < div className="logout-button-container">
+                <Link to="/logout">
+                    <button>Logout</button>
+                </Link>
+            </div>
+                
                 <em><h2>My Notes</h2></em>
                 {notes.map((note) => (
                     <Note note={note} onDelete={deleteNote} key={note.id} />
                 ))}
             </div>
+            
             <h2 className="create">Create a Note</h2>
             <form onSubmit={createNote}>
                 <label htmlFor="title">Title:</label>
