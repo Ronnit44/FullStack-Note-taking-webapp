@@ -1,5 +1,10 @@
 
 /* Container for  whole page */
+.home-container {
+  background-color: #e0f7fa;
+  min-height: 100vh; 
+  padding: 2px;
+}
 div {
     font-family: Arial,sans-serif;
   }
