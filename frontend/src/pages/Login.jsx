@@ -15,10 +15,9 @@ function Login() {
       <Form route="/api/token/" method="login" />
 
       <div style={{ marginTop: "20px", textAlign: "center" }}>
-        <p>Don't have an account?</p>
-        <Link to="/register">
-          <button>Register</button>
-        </Link>
+        <p>Don't have an account? <Link to="/register" className="register-link">Register</Link></p>
+         
+      
       </div>
     </div>
   );

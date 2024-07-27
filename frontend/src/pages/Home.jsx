@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 
 function Home(){
-
+    
     const[notes,setNotes] = useState([])
     const[content,setContent] = useState("")
     const[title,setTitle] = useState("")
@@ -14,7 +14,7 @@ function Home(){
     useEffect(() => {
         getNote();
     }, []);
-
+   
     const getNote = () =>{
 
        
@@ -27,6 +27,7 @@ function Home(){
             })
             .catch((err) => alert(err));
     };
+   
     const deleteNote = (id) => {
         api
             .delete(`/api/notes/delete/${id}/`)

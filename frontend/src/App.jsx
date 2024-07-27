@@ -6,6 +6,7 @@ import Home from "./pages/Home"
 import Notfound from "./pages/Notfound"
 import ProtectedRoute from "./components/protectedroutes"
 
+
 function Logout() {
   localStorage.clear()
   return <Navigate to="/login" />
@@ -17,13 +18,16 @@ function RegisterAndLogout() {
 }
 
 function App() {
-  
 
+  
+ 
   return (
     <BrowserRouter>
       <Routes>
+        
         <Route
           path="/"
+  
           element={
             <ProtectedRoute>
               <Home />
