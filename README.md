@@ -47,5 +47,6 @@ Clone the repository
    ```python manage.py runserver```
 
 
+https://github.com/user-attachments/assets/3d01773b-66b0-4edf-88d0-ae77e2b413a6
 
 
