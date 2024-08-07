@@ -26,23 +26,25 @@ Clone the repository
 
 #Backend Setup:-
 
-1. Change to the backend directory
+1. Change to the project directory
 
 2. Create a virtual environment and activate it(refer to this article for help:(https://www.geeksforgeeks.org/clone-and-run-a-django-project-from-github/))
 
-3. Install required dependencies
+3. Change to the backend directory
+
+4. Install required dependencies
 
    ```pip install -r requirements.txt```
 
-4. Apply migrations
+5. Apply migrations
 
    ```python manage.py migrate```
 
-5. Create a superuser
+6. Create a superuser
 
    ```python manage.py createsuperuser```
 
-6. Run the development Server
+7. Run the development Server
 
    ```python manage.py runserver```
 
