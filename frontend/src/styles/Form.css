@@ -1,4 +1,8 @@
-
+body{
+  background-image: url('112429-pink-and-white-blurred-background-vector.jpg');
+  margin: 0;
+  height: 100vh
+}
 .form-container {
     display: flex;
     flex-direction: column;
