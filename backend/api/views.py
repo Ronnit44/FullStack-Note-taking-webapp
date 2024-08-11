@@ -38,4 +38,4 @@ class CreateUserView(generics.CreateAPIView):
     permission_classes = [AllowAny]
 
  
-# Create your views here.
+

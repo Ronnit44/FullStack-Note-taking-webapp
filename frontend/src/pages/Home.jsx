@@ -5,6 +5,7 @@ import "../styles/Home.css"
 import { Link } from "react-router-dom";
 
 
+
 function Home(){
     
     const[notes,setNotes] = useState([])
@@ -27,7 +28,7 @@ function Home(){
             })
             .catch((err) => alert(err));
     };
-   
+    
     const deleteNote = (id) => {
         api
             .delete(`/api/notes/delete/${id}/`)
@@ -52,16 +53,20 @@ function Home(){
             .catch((err) => alert(err));
        
     };
+   
     return (
-        <div>
+        <div className="home-container">
             <div>
-            < div className="logout-button-container">
+            <div className="logout-button-container">
                 <Link to="/logout">
                     <button>Logout</button>
                 </Link>
             </div>
                 
                 <em><h2>My Notes</h2></em>
+
+            
+                
                 {notes.map((note) => (
                     <Note note={note} onDelete={deleteNote} key={note.id} />
                 ))}

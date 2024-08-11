@@ -4,12 +4,7 @@ from django.contrib.auth.models import User
 
 
 class Note(models.Model):
-    # CATEGORY_CHOICES = [
-    #     ('personal', 'Personal'),
-    #     ('educational', 'Educational'),
-    #     ('daily_todo', 'Daily To Do'),
-    #     ('grocery', 'Grocery'),
-    # ]
+   
 
     title = models.CharField(max_length=100)
     content = models.TextField()
