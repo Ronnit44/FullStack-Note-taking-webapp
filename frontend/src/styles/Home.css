@@ -1,7 +1,11 @@
 
 /* Container for  whole page */
 .home-container {
-  background-color: #e0f7fa;
+  background-color: #b9edf4;
+  background-image: url('patrick-tomasso-Oaqk7qqNh_c-unsplash.jpg');
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat;
   min-height: 100vh; 
   padding: 2px;
 }

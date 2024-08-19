@@ -1,5 +1,8 @@
 body{
-  background-image: url('112429-pink-and-white-blurred-background-vector.jpg');
+  background-image: url('chris-lawton-9T346Ij4kGk-unsplash.jpg');
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat;
   margin: 0;
   height: 100vh
 }
@@ -13,11 +16,12 @@ body{
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     max-width: 400px; 
+    background-color: rgba(255, 255, 255, 0.45);
   }
 
 
 .register-link {
-  color: #29293c;
+  color: #101021;
   text-decoration: none;
   font-weight: bold;
 }
