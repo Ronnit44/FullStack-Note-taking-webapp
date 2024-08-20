@@ -47,7 +47,8 @@ Clone the repository
 7. Run the development Server
 
    ```python manage.py runserver```
-
+   
+https://github.com/user-attachments/assets/0c3218fc-99cf-415c-bc5d-a3ac46920c16
 
 
 
