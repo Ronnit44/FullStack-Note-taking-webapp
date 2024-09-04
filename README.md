@@ -10,6 +10,8 @@ Python and pip installed
 
 Django and Django REST Framework installed
 
+#INSTALLATION
+
 Clone the repository
 
 #Frontend Setup:-
