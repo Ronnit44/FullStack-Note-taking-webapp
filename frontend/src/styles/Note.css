@@ -19,18 +19,44 @@
     color: #525050;
     font-size: 0.8rem;
   }
+
+  .button-container {
+    display: flex;
+    gap: 15px; 
+  }
+
   
-  .delete-button {
-    background-color: #f44336; 
+  .delete-button,.edit-button {
+    background-color: #f03b2e; 
     color: white;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
+    
+  
   }
   
   .delete-button:hover {
-    background-color: #d32f2f;
+    background-color: #f54e4e;
+  }
+
+  .edit-button:hover {
+    background-color: #45a049;
+  }
+  
+  .note-title-edit, .note-content-edit {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  .save-button, .cancel-button {
+    margin-right: 10px;
+  }
+  
+  .save-button:hover, .cancel-button:hover {
+    background-color: #007bff;
+    color: white;
   }
   
