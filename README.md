@@ -4,7 +4,7 @@ This repository contains source code for a full stack note-taking webapp built w
 This app allows users to manage notes efficiently with features including user authentication, note management, responsive design.
 
 
-https://github.com/user-attachments/assets/b06dc9f5-e338-4d32-8780-20a60e0a2f6f
+https://github.com/user-attachments/assets/2ce077c6-0536-44f7-bdb9-36aea4cf21d3
 
 Prerequisites
 
