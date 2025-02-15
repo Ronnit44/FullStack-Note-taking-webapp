@@ -1,7 +1,7 @@
 # Note Taking Application
 
 This repository contains source code for a full stack note-taking webapp built with using reactJS for the frontend and Django for the backend.
-This app allows users to manage notes efficiently with features including user authentication, note management, responsive design.
+This app allows users to manage notes efficiently with features including user authentication, note management, search functionality, responsive design.
 
 
 https://github.com/user-attachments/assets/2ce077c6-0536-44f7-bdb9-36aea4cf21d3
