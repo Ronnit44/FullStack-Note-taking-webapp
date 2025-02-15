@@ -8,7 +8,7 @@ function Login() {
       <Form route="/api/token/" method="login" />
 
       <div style={{ marginTop: "20px", textAlign: "center" }}>
-        <h2>Don't have an account? <Link to="/register" className="register-link">Register</Link></h2>
+        <h2>Don't have an account? <Link to="/register" className="register-link">Register Here</Link></h2>
          
       
       </div>

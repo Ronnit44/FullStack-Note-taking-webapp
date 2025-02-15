@@ -6,8 +6,10 @@ import { Link } from "react-router-dom";
 
 function Home() {
   const [notes, setNotes] = useState([]);
+  const [filteredNotes, setFilteredNotes] = useState([]);
   const [content, setContent] = useState("");
   const [title, setTitle] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     getNote();
@@ -19,7 +21,7 @@ function Home() {
       .then((res) => res.data)
       .then((data) => {
         setNotes(data);
-        console.log(data);
+        setFilteredNotes(data);
       })
       .catch((err) => alert(err));
   };
@@ -63,24 +65,51 @@ function Home() {
       })
       .catch((err) => alert(err));
   };
+  const handleSearch = (e) => {
+    const query = e.target.value.toLowerCase();
+    setSearchQuery(query);
+    
+    if (query === "") {
+      setFilteredNotes(notes);
+    } else {
+      const filtered = notes.filter(
+        (note) =>
+          note.title.toLowerCase().includes(query) ||
+          note.content.toLowerCase().includes(query)
+      );
+      setFilteredNotes(filtered);
+    }
+  };
 
   return (
     <div className="home-container">
-      <div>
+      <div className="header">
         <div className="logout-button-container">
           <Link to="/logout">
             <button>Logout</button>
           </Link>
         </div>
 
-        <em>
-          <h2>My Notes</h2>
-        </em>
-
-        {notes.map((note) => (
-          <Note note={note} onDelete={deleteNote} onUpdate={updateNote} key={note.id} />
-        ))}
+        <input
+          type="text"
+          placeholder="Search notes..."
+          value={searchQuery}
+          onChange={handleSearch}
+          className="search-bar"
+        />
       </div>
+
+      <em>
+        <h2>My Notes</h2>
+      </em>
+
+      {filteredNotes.length > 0 ? (
+        filteredNotes.map((note) => (
+          <Note note={note} onDelete={deleteNote} onUpdate={updateNote} key={note.id} />
+        ))
+      ) : searchQuery ? ( 
+        <p>No notes found</p>
+      ) : null}
 
       <h2 className="create">Create a Note</h2>
       <form onSubmit={createNote}>
