@@ -14,7 +14,7 @@ Python and pip installed
 
 Django and Django REST Framework installed
 
-#INSTALLATION
+# Installation
 
 Clone the repository
 
