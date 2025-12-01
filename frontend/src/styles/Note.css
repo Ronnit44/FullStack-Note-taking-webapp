@@ -1,62 +1,242 @@
+/* Note Component Styles - Warm Vintage Theme */
 
 .note-container {
-    padding: 10px;
-    margin: 20px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: rgba(255,255,255,0.7);
-  }
+  position: relative;
+  padding: var(--space-lg);
 
-  .note-title {
-    color: #0c0202;
-  }
-  
-  .note-content {
-    color: #4f4e50;
-  }
-  
-  .note-date {
-    color: #525050;
-    font-size: 0.8rem;
-  }
+  background: rgba(41, 37, 36, 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-lg);
 
-  .button-container {
-    display: flex;
-    gap: 15px; 
-  }
+  transition: all var(--transition-base);
+}
 
-  
-  .delete-button,.edit-button {
-    background-color: #f03b2e; 
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    
-  
-  }
-  
-  .delete-button:hover {
-    background-color: #f54e4e;
-  }
+.note-container:hover {
+  background: rgba(41, 37, 36, 0.9);
+  border-color: rgba(255, 255, 255, 0.12);
+}
 
-  .edit-button:hover {
-    background-color: #45a049;
-  }
-  
-  .note-title-edit, .note-content-edit {
-    width: 100%;
-    margin-bottom: 10px;
-  }
-  
-  .save-button, .cancel-button {
-    margin-right: 10px;
-  }
-  
-  .save-button:hover, .cancel-button:hover {
-    background-color: #007bff;
-    color: white;
-  }
-  
+.note-container.pinned {
+  border-left: 3px solid var(--color-primary);
+}
+
+/* Color indicator */
+.note-color-indicator {
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-md);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+/* Note Header */
+.note-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-sm);
+}
+
+.note-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-slate-100);
+}
+
+.pin-badge {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 2px 8px;
+  background: rgba(184, 134, 11, 0.2);
+  color: var(--color-primary-light);
+  border-radius: var(--radius-sm);
+}
+
+/* Note Content */
+.note-content {
+  color: var(--color-slate-300);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  margin-bottom: var(--space-md);
+  cursor: pointer;
+}
+
+.note-content.truncated {
+  position: relative;
+}
+
+.read-more {
+  display: block;
+  margin-top: var(--space-xs);
+  color: var(--color-primary-light);
+  font-size: 0.8125rem;
+}
+
+/* Note content rendered HTML styling */
+.note-content h1,
+.note-content h2,
+.note-content h3 {
+  margin-bottom: var(--space-sm);
+  color: var(--color-slate-100);
+}
+
+.note-content p {
+  margin-bottom: var(--space-sm);
+}
+
+.note-content ul,
+.note-content ol {
+  margin-left: var(--space-lg);
+  margin-bottom: var(--space-sm);
+}
+
+.note-content a {
+  color: var(--color-primary-light);
+}
+
+/* Note Date */
+.note-date {
+  font-size: 0.75rem;
+  color: var(--color-slate-500);
+  margin-bottom: var(--space-md);
+}
+
+/* Editing State */
+.note-title-edit {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: var(--space-md);
+
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+
+  color: var(--color-slate-100);
+  font-size: 1rem;
+  font-weight: 600;
+
+  transition: all var(--transition-base);
+}
+
+.note-title-edit:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.note-title-edit::placeholder {
+  color: var(--color-slate-500);
+  font-weight: 400;
+}
+
+/* Color Selector */
+.color-selector {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.color-label {
+  font-size: 0.8125rem;
+  color: var(--color-slate-400);
+  font-weight: 500;
+}
+
+.color-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform var(--transition-fast);
+}
+
+.color-dot:hover {
+  transform: scale(1.15);
+}
+
+.color-dot.selected {
+  border-color: var(--color-slate-300);
+}
+
+/* Button Container */
+.button-container {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+/* Button Base Styles */
+.button-container button {
+  padding: 8px 14px;
+
+  font-size: 0.8125rem;
+  font-weight: 500;
+
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+/* Save Button */
+.save-button {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  border-color: var(--color-primary) !important;
+  color: white;
+}
+
+.save-button:hover {
+  box-shadow: 0 2px 8px rgba(184, 134, 11, 0.3);
+}
+
+/* Cancel Button */
+.cancel-button {
+  background: transparent;
+  color: var(--color-slate-400);
+}
+
+.cancel-button:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--color-slate-200);
+}
+
+/* Pin Button */
+.pin-button {
+  background: transparent;
+  color: var(--color-slate-400);
+}
+
+.pin-button:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--color-slate-200);
+}
+
+/* Edit Button */
+.edit-button {
+  background: transparent;
+  color: var(--color-slate-400);
+}
+
+.edit-button:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--color-slate-200);
+}
+
+/* Delete Button */
+.delete-button {
+  background: transparent;
+  color: var(--color-danger);
+  border-color: transparent !important;
+}
+
+.delete-button:hover {
+  background: rgba(169, 68, 66, 0.1);
+}

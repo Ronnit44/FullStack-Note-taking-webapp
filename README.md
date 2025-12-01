@@ -1,132 +1,224 @@
-# 📝 Full Stack Note-Taking Web App
+# Scribe - Note-Taking Application
 
-A responsive and feature-rich **Note-Taking Application** built using **ReactJS (Frontend)** and **Django REST Framework (Backend)**.  
-This application allows users to **create, manage, and search notes efficiently**, with secure user authentication and a clean, modern interface.
-
-[Demo](https://github.com/user-attachments/assets/e91b2fb9-c673-4492-bb87-ae2d90968e45)
+A full-stack note-taking application with a beautiful vintage-inspired UI. Built with **React** (Vite) and **Django REST Framework**.
 
 ---
 
-## 🚀 Features
+## Features
 
-- 🔐 **User Authentication** — Sign up, login, and manage notes securely.  
-- 📝 **Note Management** — Create, edit, delete, and view notes with ease.  
-- 🔍 **Search Functionality** — Quickly find notes by title or content.  
-- 📱 **Responsive Design** — Optimized for both desktop and mobile devices.  
-- ⚡ **Fast & Lightweight** — Built with React and Django REST API for smooth performance.
-
----
-
-## 🛠️ Tech Stack
-
-**Frontend**  
-- ⚛️ React.js  
-- React Router DOM  
-- Axios  
-- JWT Decode  
-
-**Backend**  
-- 🐍 Python  
-- 🧱 Django  
-- 🌐 Django REST Framework  
-- SQLite (default, can be replaced)
+- **Rich Text Editor** - Format notes with bold, italic, lists, and more
+- **Color Tags** - Organize notes with color-coded labels
+- **Pin Notes** - Keep important notes at the top
+- **User Authentication** - Secure login and registration
+- **Search** - Quickly find notes by title or content
+- **Responsive Design** - Works on desktop and mobile
 
 ---
 
-## 📦 Prerequisites
+## Tech Stack
 
-Before you begin, ensure you have the following installed:
-
-- [Node.js](https://nodejs.org/) and npm  
-- [Python](https://www.python.org/) and pip  
-- [Django](https://www.djangoproject.com/) & Django REST Framework
+| Frontend | Backend |
+|----------|---------|
+| React 18 + Vite | Django 5 |
+| React Router DOM | Django REST Framework |
+| React Quill (Rich Text) | Simple JWT (Auth) |
+| React Hot Toast | PostgreSQL (Production) |
+| date-fns | SQLite (Development) |
 
 ---
 
-## 🧭 Installation & Setup
+## Local Development
 
-### 1️⃣ Clone the Repository
+### Prerequisites
+
+- Node.js 18+ and npm
+- Python 3.10+
+- Git
+
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/Ronnit44/FullStack-Note-taking-webapp.git
 cd FullStack-Note-taking-webapp
 ```
----
 
-### 2️⃣ Frontend Setup
+### 2. Backend Setup
+
+```bash
+cd backend
+
+# Create virtual environment
+python -m venv venv
+
+# Activate (Windows)
+venv\Scripts\activate
+
+# Activate (macOS/Linux)
+source venv/bin/activate
+
+# Install dependencies
+pip install -r ../requirements.txt
+
+# Run migrations
+python manage.py migrate
+
+# Start server
+python manage.py runserver
+```
+
+Backend runs at: `http://127.0.0.1:8000/`
+
+### 3. Frontend Setup
 
 ```bash
 cd frontend
-npm install axios react-router-dom jwt-decode
+
+# Install dependencies
+npm install
+
+# Create .env file
+echo "VITE_API_URL=http://127.0.0.1:8000" > .env
+
+# Start dev server
 npm run dev
 ```
 
-The React development server should now be running on **[http://localhost:5173/](http://localhost:5173/)** (or a similar port).
+Frontend runs at: `http://localhost:5173/`
 
 ---
 
-### 3️⃣ Backend Setup
+## Deployment Guide
 
-1. Navigate to the backend folder:
+### Deploy Backend to Render
 
-   ```bash
-   cd backend
-   ```
+1. **Push to GitHub** - Ensure your code is pushed to a GitHub repository.
 
-2. Create and activate a virtual environment
-   (Refer to [this guide](https://www.geeksforgeeks.org/clone-and-run-a-django-project-from-github/) if needed)
+2. **Create Render Account** - Sign up at [render.com](https://render.com)
 
-   ```bash
-   python -m venv venv
-   # On Windows
-   venv\Scripts\activate
-   # On macOS/Linux
-   source venv/bin/activate
-   ```
+3. **Create PostgreSQL Database**
+   - Go to Dashboard → New → PostgreSQL
+   - Name: `scribe-db`
+   - Choose Free plan
+   - Click "Create Database"
+   - Copy the **Internal Database URL** for later
 
-3. Install dependencies:
+4. **Create Web Service**
+   - Go to Dashboard → New → Web Service
+   - Connect your GitHub repository
+   - Configure:
+     - **Name**: `scribe-api`
+     - **Root Directory**: `backend`
+     - **Runtime**: Python 3
+     - **Build Command**: `pip install -r ../requirements.txt`
+     - **Start Command**: `gunicorn backend.wsgi:application`
 
-   ```bash
-   pip install -r requirements.txt
-   ```
+5. **Set Environment Variables**
+   - Click "Environment" tab and add:
+   
+   | Key | Value |
+   |-----|-------|
+   | `SECRET_KEY` | Generate a random 50+ character string |
+   | `DEBUG` | `False` |
+   | `DATABASE_URL` | Paste the Internal Database URL from step 3 |
+   | `ALLOWED_HOSTS` | `scribe-api.onrender.com` (your Render URL) |
+   | `CORS_ALLOWED_ORIGINS` | `https://your-frontend.vercel.app` (add after frontend deploy) |
 
-4. Apply migrations:
+6. **Deploy** - Click "Create Web Service"
 
+7. **Run Migrations** - In Render Shell or via deploy:
    ```bash
    python manage.py migrate
    ```
 
-5. Create a superuser:
-
-   ```bash
-   python manage.py createsuperuser
-   ```
-
-6. Run the Django server:
-
-   ```bash
-   python manage.py runserver
-   ```
-
-The backend will be available at **[http://127.0.0.1:8000/](http://127.0.0.1:8000/)**.
+8. **Note your backend URL** (e.g., `https://scribe-api.onrender.com`)
 
 ---
 
-## 🌐 Project Structure
+### Deploy Frontend to Vercel
+
+1. **Create Vercel Account** - Sign up at [vercel.com](https://vercel.com)
+
+2. **Import Project**
+   - Click "Add New" → "Project"
+   - Import your GitHub repository
+   - Configure:
+     - **Framework Preset**: Vite
+     - **Root Directory**: `frontend`
+
+3. **Set Environment Variables**
+   - Add the following:
+   
+   | Key | Value |
+   |-----|-------|
+   | `VITE_API_URL` | `https://scribe-api.onrender.com` (your Render backend URL) |
+
+4. **Deploy** - Click "Deploy"
+
+5. **Note your frontend URL** (e.g., `https://scribe-app.vercel.app`)
+
+---
+
+### Post-Deployment: Connect Frontend & Backend
+
+1. **Update Render CORS**
+   - Go to your Render Web Service → Environment
+   - Update `CORS_ALLOWED_ORIGINS` to include your Vercel URL:
+     ```
+     https://scribe-app.vercel.app
+     ```
+   - Trigger a redeploy
+
+2. **Update Render ALLOWED_HOSTS** (if needed)
+   - Add your full Render URL to `ALLOWED_HOSTS`
+
+3. **Test the Application**
+   - Visit your Vercel URL
+   - Register a new account
+   - Create some notes!
+
+---
+
+## Project Structure
 
 ```
 FullStack-Note-taking-webapp/
-├── frontend/             # React frontend
-├── backend/              # Django backend
-├── README.md
-└── requirements.txt
+├── backend/
+│   ├── api/              # Django app (models, views, serializers)
+│   ├── backend/          # Django settings
+│   └── manage.py
+├── frontend/
+│   ├── public/           # Static assets (images, logo)
+│   ├── src/
+│   │   ├── components/   # React components
+│   │   ├── pages/        # Page components
+│   │   ├── styles/       # CSS files
+│   │   └── App.jsx       # Main app
+│   ├── vercel.json       # Vercel config
+│   └── package.json
+├── render.yaml           # Render blueprint
+├── requirements.txt      # Python dependencies
+└── README.md
 ```
 
 ---
 
+## Environment Variables Reference
 
+### Backend (Render)
 
+| Variable | Description | Example |
+|----------|-------------|---------|
+| `SECRET_KEY` | Django secret key | Random 50+ chars |
+| `DEBUG` | Debug mode | `False` |
+| `DATABASE_URL` | PostgreSQL connection URL | `postgres://...` |
+| `ALLOWED_HOSTS` | Allowed domain names | `scribe-api.onrender.com` |
+| `CORS_ALLOWED_ORIGINS` | Frontend URLs for CORS | `https://app.vercel.app` |
 
+### Frontend (Vercel)
 
+| Variable | Description | Example |
+|----------|-------------|---------|
+| `VITE_API_URL` | Backend API URL | `https://scribe-api.onrender.com` |
 
+---
 
