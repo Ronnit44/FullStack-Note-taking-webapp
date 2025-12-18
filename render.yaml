@@ -11,18 +11,12 @@ services:
       - key: PYTHON_VERSION
         value: "3.11"
       - key: DATABASE_URL
-        fromDatabase:
-          name: notes-db
-          property: connectionString
+        sync: false
       - key: SECRET_KEY
         generateValue: true
       - key: DEBUG
         value: "False"
       - key: ALLOWED_HOSTS
-        value: ".onrender.com"
-
-databases:
-  - name: notes-db
-    plan: free
-    databaseName: notes_db
-    user: notes_user
+        sync: false
+      - key: CORS_ALLOWED_ORIGINS
+        sync: false
