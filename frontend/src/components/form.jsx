@@ -25,7 +25,6 @@ function Form({ route, method }) {
     setLoading(true);
     e.preventDefault();
 
-    // Validate passwords match for registration
     if (isRegister && password !== confirmPassword) {
       toast.error("Passwords do not match");
       setLoading(false);
@@ -38,7 +37,8 @@ function Form({ route, method }) {
         : { username, password };
 
       const res = await api.post(route, payload);
-      if (method === "login") {
+
+      if (!isRegister) {
         localStorage.setItem(ACCESS_TOKEN, res.data.access);
         localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
         toast.success("Welcome back!");
@@ -47,14 +47,28 @@ function Form({ route, method }) {
         toast.success("Account created! Please login.");
         navigate("/login");
       }
-    } catch (error) {
-      if (error.response?.status === 401) {
-        toast.error("Invalid credentials");
-      } else if (error.response?.status === 400) {
-        toast.error("Username already exists");
-      } else {
-        toast.error("Something went wrong");
-      }
+    } catch {
+      toast.error("Something went wrong");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleDemoLogin = async () => {
+    setLoading(true);
+
+    try {
+      const res = await api.post(route, {
+        username: "buddha",
+        password: "buddha123",
+      });
+
+      localStorage.setItem(ACCESS_TOKEN, res.data.access);
+      localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
+      toast.success("Logged in as Demo User");
+      navigate("/");
+    } catch {
+      toast.error("Demo login failed");
     } finally {
       setLoading(false);
     }
@@ -94,7 +108,6 @@ function Form({ route, method }) {
         required
       />
 
-      {/* Password */}
       <div className="password-container">
         <input
           className="form-input"
@@ -104,7 +117,6 @@ function Form({ route, method }) {
           placeholder="Password"
           required
         />
-
         <button
           type="button"
           className="password-eye-button"
@@ -114,7 +126,6 @@ function Form({ route, method }) {
         </button>
       </div>
 
-      {/* Confirm Password */}
       {isRegister && (
         <div className="password-container">
           <input
@@ -125,7 +136,6 @@ function Form({ route, method }) {
             placeholder="Confirm Password"
             required
           />
-
           <button
             type="button"
             className="password-eye-button"
@@ -143,6 +153,17 @@ function Form({ route, method }) {
       <button className="form-button" type="submit" disabled={loading}>
         {loading ? "Please wait..." : name}
       </button>
+
+      {!isRegister && (
+        <button
+          type="button"
+          className="form-button demo-button"
+          onClick={handleDemoLogin}
+          disabled={loading}
+        >
+          Try Demo
+        </button>
+      )}
     </form>
   );
 }
