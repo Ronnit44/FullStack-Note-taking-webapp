@@ -87,7 +87,9 @@ MIDDLEWARE = [
 ]
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
+    "https://scribe-ronnit.vercel.app",
 ]
+
 
 ROOT_URLCONF = "backend.urls"
 
