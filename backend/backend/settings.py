@@ -34,16 +34,12 @@ DEBUG = os.getenv("DEBUG", "True").lower() == "true"
 # Allowed hosts configuration
 ALLOWED_HOSTS_STR = os.getenv("ALLOWED_HOSTS", "localhost,127.0.0.1")
 ALLOWED_HOSTS = [h.strip() for h in ALLOWED_HOSTS_STR.split(",")]
-
-# CORS Configuration
-CORS_ALLOWED_ORIGINS_STR = os.getenv("CORS_ALLOWED_ORIGINS", "")
-if CORS_ALLOWED_ORIGINS_STR:
-    CORS_ALLOWED_ORIGINS = [o.strip() for o in CORS_ALLOWED_ORIGINS_STR.split(",")]
-    CORS_ALLOW_ALL_ORIGINS = False
-else:
-    CORS_ALLOW_ALL_ORIGINS = True
-
+# CORS configuration
 CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    "https://scribe-ronnit.vercel.app",
+]
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
@@ -84,10 +80,6 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-]
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
-    "https://scribe-ronnit.vercel.app",
 ]
 
 
